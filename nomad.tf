@@ -11,7 +11,7 @@ resource "vault_jwt_auth_backend" "nomad_WI" {
 resource "vault_jwt_auth_backend_role" "nomad_WI" {
   backend         = vault_jwt_auth_backend.nomad_WI.path
   role_name       = "nomad_WI"
-  token_policies  = ["default"]
+  token_policies  = ["default", vault_policy.core_nomad_wi.name]
   bound_audiences = ["vault.io"]
   oidc_scopes = [
     "https://www.googleapis.com/auth/admin.directory.group",
