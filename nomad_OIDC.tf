@@ -12,7 +12,7 @@ resource "vault_identity_oidc_key" "nomad" {
 }
 
 resource "vault_identity_oidc_client" "nomad" {
-  name          = "core/nomad"
+  name          = "core_nomad"
   redirect_uris = [
     "https://nomad.devcastops.com:4649/oidc/callback",
     "https://nomad.devcastops.com:4200/ui/settings/tokens"
