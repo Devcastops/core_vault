@@ -1,7 +1,7 @@
 resource "vault_jwt_auth_backend" "nomad_WI" {
   description        = "Auth from Nomad"
   path               = "core/nomad"
-  default_role       = "nomad_WI"
+  default_role       = "nomad_wi"
   type               = "jwt"
   jwks_url = "${var.nomad_url}/.well-known/jwks.json"
   jwt_supported_algs = ["RS256", "EdDSA"]
@@ -10,7 +10,7 @@ resource "vault_jwt_auth_backend" "nomad_WI" {
 
 resource "vault_jwt_auth_backend_role" "nomad_WI" {
   backend         = vault_jwt_auth_backend.nomad_WI.path
-  role_name       = "nomad_WI"
+  role_name       = "nomad_wi"
   token_policies  = ["default", vault_policy.core_nomad_wi.name]
   bound_audiences = ["vault.io"]
   oidc_scopes = [
