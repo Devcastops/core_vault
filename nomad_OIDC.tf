@@ -1,12 +1,12 @@
 resource "vault_identity_oidc_assignment" "nomad" {
-  name       = "core/nomad"
+  name       = "core_nomad"
   group_ids  = [
     vault_identity_group.core_admin.id,
   ]
 }
 
 resource "vault_identity_oidc_key" "nomad" {
-  name      = "core/nomad"
+  name      = "core_nomad"
   algorithm = "RS256"
   allowed_client_ids = ["*"]
 }
