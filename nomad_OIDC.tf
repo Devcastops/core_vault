@@ -23,3 +23,14 @@ resource "vault_identity_oidc_client" "nomad" {
   id_token_ttl     = 2400
   access_token_ttl = 7200
 }
+
+resource "vault_identity_oidc_provider" "nomad" {
+  name = "core_nomad"
+  https_enabled = true
+  allowed_client_ids = [
+    vault_identity_oidc_client.nomad.client_id
+  ]
+  scopes_supported = [
+    vault_identity_oidc_scope.groups.name
+  ]
+}
