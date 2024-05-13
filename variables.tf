@@ -19,3 +19,13 @@ variable "nomad_url" {
   type = string
   description = "url of nomad https://url:4646"
 }
+
+variable "consul_url" {
+  type = string
+  description = "url of nomad https://url:8501"
+}
+
+variable "consul_token" {
+  type = string
+  description = "the token to use to acl auth with consul"
+}
