@@ -57,8 +57,8 @@ resource "vault_identity_oidc_role" "consul_auto_config" {
   name = "consul_auto_config"
   key = vault_identity_oidc_key.consul_auto_config.name
   template = jsonencode({
-    consul: {
-      hostname: "consul-client" 
+    "consul" = {
+      "hostname" = "consul-client"
     }
   })
 }
