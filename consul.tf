@@ -56,5 +56,6 @@ resource "vault_identity_oidc_provider" "consul_auto_config" {
 resource "vault_identity_oidc_role" "consul_auto_config" {
   name = "consul_auto_config"
   key = vault_identity_oidc_key.consul_auto_config.name
+  client_id = vault_identity_oidc_client.consul_auto_config.id
   template = "'{\"consul\":{\"hostname\":\"consul-client\"}}'" 
 }
