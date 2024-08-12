@@ -42,7 +42,7 @@ resource "vault_identity_oidc_client" "consul_auto_config" {
   access_token_ttl = 7200
 }
 
-resource "vault_identity_oidc_provider" "" {
+resource "vault_identity_oidc_provider" "consul_auto_config" {
   name = "core_consul_auto_config"
   https_enabled = true
   allowed_client_ids = [
