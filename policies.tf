@@ -27,3 +27,13 @@ path "{{ identity.entity.aliases.${ vault_jwt_auth_backend.nomad_WI.accessor }.m
 }
 EOT
 }
+
+resource "vault_policy" "consul_auto_config" {
+  name = "core/consul/auto_config"
+
+  policy = <<EOT
+path "identity/${vault_identity_oidc_client.consul_auto_config.name}/token/consul_auto_config" {
+  capabilities = ["read"]
+}
+EOT
+}
