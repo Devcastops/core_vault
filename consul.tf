@@ -32,7 +32,7 @@ resource "vault_identity_oidc_key" "consul_auto_config" {
 }
 
 resource "vault_identity_oidc_client" "consul_auto_config" {
-  name          = "core_consul_auto_config"
+  name          = "consul-cluster-dc1"
   redirect_uris = [
   ]
   assignments = [
