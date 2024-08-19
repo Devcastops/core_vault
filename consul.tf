@@ -38,7 +38,7 @@ resource "vault_identity_oidc_client" "consul_auto_config" {
   assignments = [
     vault_identity_oidc_assignment.consul_auto_config.name
   ]
-  key = vault_identity_oidc_key.consul_auto_config.name
+  key = "core_consul_auto_config"
   id_token_ttl     = 2400
   access_token_ttl = 7200
 }
