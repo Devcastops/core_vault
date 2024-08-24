@@ -28,7 +28,7 @@ resource "vault_identity_oidc_assignment" "consul_auto_config" {
 resource "vault_identity_oidc_key" "consul_auto_config" {
   name      = "core_consul_auto_config"
   algorithm = "RS256"
-  allowed_client_ids = ["consul-cluster-dc1"]
+  allowed_client_ids = [vault_identity_oidc_client.consul_auto_config.client_id]
 }
 
 resource "vault_identity_oidc_client" "consul_auto_config" {
@@ -47,7 +47,7 @@ resource "vault_identity_oidc_provider" "consul_auto_config" {
   name = "core_consul_auto_config"
   https_enabled = true
   allowed_client_ids = [
-    "consul-cluster-dc1"
+    vault_identity_oidc_client.consul_auto_config.client_id
   ]
   scopes_supported = [
   ]
@@ -57,6 +57,6 @@ resource "vault_identity_oidc_provider" "consul_auto_config" {
 resource "vault_identity_oidc_role" "consul_auto_config" {
   name = "consul-cluster-dc1"
   key = vault_identity_oidc_key.consul_auto_config.name
-  client_id = "consul-cluster-dc1"
+  client_id = vault_identity_oidc_client.consul_auto_config.client_id
   template = "{\"consul\": {\"hostname\": \"consul-client\" } }"
 }
