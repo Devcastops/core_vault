@@ -12,7 +12,7 @@ resource "vault_jwt_auth_backend_role" "core_terraform_core_vault" {
   bound_audiences   = ["vault.workload.identity"]
   bound_claims_type = "glob"
   bound_claims = {
-    sub = "organization:GLUK:project:*:workspace:core_vault:run_phase:*"
+    sub = "organization:devcastops:project:*:workspace:*:run_phase:*"
   }
   user_claim = "terraform_workspace_name"
   role_type  = "jwt"
