@@ -32,7 +32,7 @@ resource "vault_policy" "consul_auto_config" {
   name = "core/consul/auto_config"
 
   policy = <<EOT
-path "identity/${vault_identity_oidc_client.consul_auto_config.name}/token/consul_auto_config" {
+path "identity/oidc/token/${vault_identity_oidc_client.consul_auto_config.name}" {
   capabilities = ["read"]
 }
 EOT
