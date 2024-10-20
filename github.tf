@@ -20,7 +20,7 @@ resource "vault_jwt_auth_backend_role" "github_WI" {
   for_each        = local.github_access
   backend         = vault_jwt_auth_backend.github_WI.path
   role_name       = each.key
-  token_policies  = each.value
+  token_policies  = each.value.policies
   bound_claims = {
     "repository": "Devcastops/${each.key}"
   }
