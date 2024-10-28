@@ -18,6 +18,7 @@ resource "vault_pki_secret_backend_root_cert" "consul" {
   exclude_cn_from_sans  = true
   ou                    = "DevCastOps"
   organization          = "DevCastOps"
+  issuer_name           = "consul"
 }
 
 resource "vault_pki_secret_backend_role" "role" {
