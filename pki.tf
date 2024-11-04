@@ -15,7 +15,7 @@ resource "vault_pki_secret_backend_root_cert" "consul" {
   format                = "pem"
   key_type              = "rsa"
   key_bits              = 4096
-  exclude_cn_from_sans  = true
+  exclude_cn_from_sans  = false
   ou                    = "DevCastOps"
   organization          = "DevCastOps"
   issuer_name           = "consul"
