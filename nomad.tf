@@ -18,7 +18,7 @@ resource "vault_jwt_auth_backend_role" "nomad_WI" {
     "https://www.googleapis.com/auth/admin.directory.user",
     "email"
   ]
-  allowed_redirect_uris = ["${var.vault_addr}/ui/vault/auth/${vault_jwt_auth_backend.core_gcp.path}/oidc/callback"]
+  allowed_redirect_uris = ["${var.vault_addr}/ui/vault/auth/${vault_jwt_auth_backend.core_google.path}/oidc/callback"]
   user_claim            = "/nomad_job_id"
   //groups_claim    = "groups"
   role_type = "jwt"
