@@ -1,7 +1,7 @@
-resource "vault_jwt_auth_backend" "core_gcp" {
-  description        = "Auth from GCP"
-  path               = "core/gcp"
-  default_role       = "gcp"
+resource "vault_jwt_auth_backend" "core_google" {
+  description        = "Auth from google"
+  path               = "core/google"
+  default_role       = "google"
   type               = "oidc"
   oidc_discovery_url = "https://accounts.google.com"
   oidc_client_id     = var.core_gcp_client_id
@@ -14,9 +14,9 @@ resource "vault_jwt_auth_backend" "core_gcp" {
   }
 }
 
-resource "vault_jwt_auth_backend_role" "core_gcp" {
-  backend         = vault_jwt_auth_backend.core_gcp.path
-  role_name       = "gcp"
+resource "vault_jwt_auth_backend_role" "core_google" {
+  backend         = vault_jwt_auth_backend.core_google.path
+  role_name       = "google"
   token_policies  = ["default"]
   bound_audiences = [var.core_gcp_client_id]
   oidc_scopes = [
@@ -24,7 +24,10 @@ resource "vault_jwt_auth_backend_role" "core_gcp" {
     "https://www.googleapis.com/auth/admin.directory.user",
     "email"
   ]
-  allowed_redirect_uris = ["${var.vault_addr}/ui/vault/auth/${vault_jwt_auth_backend.core_gcp.path}/oidc/callback", "http://localhost:8250/oidc/callback"]
+  allowed_redirect_uris = [
+    "${var.vault_addr}/ui/vault/auth/${vault_jwt_auth_backend.core_google.path}/oidc/callback",
+    "http://localhost:8250/oidc/callback"
+  ]
   user_claim            = "email"
   //groups_claim    = "groups"
   role_type = "oidc"
