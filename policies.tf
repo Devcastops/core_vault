@@ -25,6 +25,9 @@ resource "vault_policy" "core_nomad_wi" {
 path "{{ identity.entity.aliases.${ vault_jwt_auth_backend.nomad_WI.accessor }.metadata.nomad_job_id }}/*" {
   capabilities = ["create", "read", "update", "delete", "list"]
 }
+path "{{ identity.entity.aliases.${ vault_jwt_auth_backend.nomad_WI.accessor }.metadata.nomad_namespace }}/{{ identity.entity.aliases.${ vault_jwt_auth_backend.nomad_WI.accessor }.metadata.nomad_job_id }}/*" {
+  capabilities = ["create", "read", "update", "delete", "list"]
+}
 EOT
 }
 
