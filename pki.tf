@@ -3,7 +3,7 @@ resource "vault_mount" "pki" {
   type        = "pki"
   description = "Vault PKI mount to act as internal CA"
 
-  default_lease_ttl_seconds = 3600
+  default_lease_ttl_seconds = 31*24*60*60
   max_lease_ttl_seconds     = 31*24*60*60
 }
 
