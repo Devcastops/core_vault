@@ -18,44 +18,44 @@ resource "vault_consul_secret_backend_role" "admin" {
 
 
 
-resource "vault_identity_oidc_assignment" "consul_auto_config" {
-  name       = "core_consul_auto_config"
-  group_ids  = [
-    vault_identity_group.core_admin.id,
-  ]
-}
+# resource "vault_identity_oidc_assignment" "consul_auto_config" {
+#   name       = "core_consul_auto_config"
+#   group_ids  = [
+#     vault_identity_group.core_admin.id,
+#   ]
+# }
 
-resource "vault_identity_oidc_key" "consul_auto_config" {
-  name      = "core_consul_auto_config"
-  algorithm = "RS256"
-  allowed_client_ids = [vault_identity_oidc_client.consul_auto_config.client_id]
-}
+# resource "vault_identity_oidc_key" "consul_auto_config" {
+#   name      = "core_consul_auto_config"
+#   algorithm = "RS256"
+#   allowed_client_ids = [vault_identity_oidc_client.consul_auto_config.client_id]
+# }
 
-resource "vault_identity_oidc_client" "consul_auto_config" {
-  name          = "consul-cluster-dc1"
-  redirect_uris = [
-  ]
-  assignments = [
-    vault_identity_oidc_assignment.consul_auto_config.name
-  ]
-  key = "core_consul_auto_config"
-  id_token_ttl     = 2400
-  access_token_ttl = 7200
-}
+# resource "vault_identity_oidc_client" "consul_auto_config" {
+#   name          = "consul-cluster-dc1"
+#   redirect_uris = [
+#   ]
+#   assignments = [
+#     vault_identity_oidc_assignment.consul_auto_config.name
+#   ]
+#   key = "core_consul_auto_config"
+#   id_token_ttl     = 2400
+#   access_token_ttl = 7200
+# }
 
-resource "vault_identity_oidc_provider" "consul_auto_config" {
-  name = "core_consul_auto_config"
-  https_enabled = true
-  allowed_client_ids = [
-    vault_identity_oidc_client.consul_auto_config.client_id
-  ]
-  scopes_supported = [
-  ]
-}
+# resource "vault_identity_oidc_provider" "consul_auto_config" {
+#   name = "core_consul_auto_config"
+#   https_enabled = true
+#   allowed_client_ids = [
+#     vault_identity_oidc_client.consul_auto_config.client_id
+#   ]
+#   scopes_supported = [
+#   ]
+# }
 
-resource "vault_identity_oidc_role" "consul_auto_config" {
-  name = "consul-cluster-dc1"
-  key = vault_identity_oidc_key.consul_auto_config.name
-  client_id = vault_identity_oidc_client.consul_auto_config.client_id
-  template = "{\"consul\": {\"hostname\": \"consul-client\" } }"
-}
+# resource "vault_identity_oidc_role" "consul_auto_config" {
+#   name = "consul-cluster-dc1"
+#   key = vault_identity_oidc_key.consul_auto_config.name
+#   client_id = vault_identity_oidc_client.consul_auto_config.client_id
+#   template = "{\"consul\": {\"hostname\": \"consul-client\" } }"
+# }
