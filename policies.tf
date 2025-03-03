@@ -39,10 +39,10 @@ path "${vault_mount.pki.path}/*" {
   capabilities = ["read", "list"]
 }
 path "${vault_mount.pki.path}/issue/${vault_pki_secret_backend_role.role.name}" {
-  capabilities = ["read", "create", "list"]
+  capabilities = ["read", "create", "update", "list"]
 }
 path "${vault_mount.pki.path}/sign/${vault_pki_secret_backend_role.role.name}" {
-  capabilities = ["read", "create", "list"]
+  capabilities = ["read", "create", "update", "list"]
 }
 EOT
 }
