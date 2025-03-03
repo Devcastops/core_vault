@@ -22,10 +22,10 @@ resource "vault_policy" "core_nomad_wi" {
   name = "core/nomad/wi"
 
   policy = <<EOT
-path "{{ identity.entity.aliases.${ vault_jwt_auth_backend.nomad_WI.accessor }.metadata.nomad_job_id }}/*" {
+path "{{ identity.entity.aliases.${vault_jwt_auth_backend.nomad_WI.accessor}.metadata.nomad_job_id }}/*" {
   capabilities = ["create", "read", "update", "delete", "list"]
 }
-path "{{ identity.entity.aliases.${ vault_jwt_auth_backend.nomad_WI.accessor }.metadata.nomad_namespace }}/{{ identity.entity.aliases.${ vault_jwt_auth_backend.nomad_WI.accessor }.metadata.nomad_job_id }}/*" {
+path "{{ identity.entity.aliases.${vault_jwt_auth_backend.nomad_WI.accessor}.metadata.nomad_namespace }}/{{ identity.entity.aliases.${vault_jwt_auth_backend.nomad_WI.accessor}.metadata.nomad_job_id }}/*" {
   capabilities = ["create", "read", "update", "delete", "list"]
 }
 EOT
