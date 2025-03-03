@@ -1,18 +1,18 @@
 resource "vault_identity_oidc_assignment" "nomad" {
-  name       = "core_nomad"
-  group_ids  = [
+  name = "core_nomad"
+  group_ids = [
     vault_identity_group.core_admin.id,
   ]
 }
 
 resource "vault_identity_oidc_key" "nomad" {
-  name      = "core_nomad"
-  algorithm = "RS256"
+  name               = "core_nomad"
+  algorithm          = "RS256"
   allowed_client_ids = ["*"]
 }
 
 resource "vault_identity_oidc_client" "nomad" {
-  name          = "core_nomad"
+  name = "core_nomad"
   redirect_uris = [
     "https://nomad.devcastops.com:4649/oidc/callback",
     "https://nomad.devcastops.com:4646/ui/settings/tokens"
@@ -25,7 +25,7 @@ resource "vault_identity_oidc_client" "nomad" {
 }
 
 resource "vault_identity_oidc_provider" "nomad" {
-  name = "core_nomad"
+  name          = "core_nomad"
   https_enabled = true
   allowed_client_ids = [
     vault_identity_oidc_client.nomad.client_id

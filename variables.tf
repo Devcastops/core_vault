@@ -16,16 +16,16 @@ variable "core_gcp_client_secret" {
 }
 
 variable "nomad_url" {
-  type = string
+  type        = string
   description = "url of nomad https://url:4646"
 }
 
 variable "consul_url" {
-  type = string
-  description = "url of nomad https://url:8501"
+  type        = string
+  description = "url of consul https://url:8501"
 }
 
 variable "consul_token" {
-  type = string
+  type        = string
   description = "the token to use to acl auth with consul"
 }

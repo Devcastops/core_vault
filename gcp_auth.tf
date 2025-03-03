@@ -28,7 +28,7 @@ resource "vault_jwt_auth_backend_role" "core_google" {
     "${var.vault_addr}/ui/vault/auth/${vault_jwt_auth_backend.core_google.path}/oidc/callback",
     "http://localhost:8250/oidc/callback"
   ]
-  user_claim            = "email"
+  user_claim = "email"
   //groups_claim    = "groups"
   role_type = "oidc"
 }
