@@ -31,12 +31,18 @@ path "{{ identity.entity.aliases.${vault_jwt_auth_backend.nomad_WI.accessor}.met
 EOT
 }
 
-# resource "vault_policy" "consul_auto_config" {
-#   name = "core/consul/auto_config"
+resource "vault_policy" "consul_server" {
+  name = "core/consul/server"
 
-#   policy = <<EOT
-# path "identity/oidc/token/${vault_identity_oidc_client.consul_auto_config.name}" {
-#   capabilities = ["read"]
-# }
-# EOT
-# }
+  policy = <<EOT
+path "${vault_mount.pki.path}/*" {
+  capabilities = ["read", "list"]
+}
+path "${vault_mount.pki.path}/issue/${vault_pki_secret_backend_role.role.name}" {
+  capabilities = ["read", "write", "list"]
+}
+path "${vault_mount.pki.path}/sign/${vault_pki_secret_backend_role.role.name}" {
+  capabilities = ["read", "write", "list"]
+}
+EOT
+}
