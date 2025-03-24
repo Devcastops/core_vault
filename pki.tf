@@ -20,7 +20,7 @@ resource "vault_pki_secret_backend_root_cert" "consul" {
   organization         = "DevCastOps"
   issuer_name          = "consul"
   lifecycle {
-    ignore_changes = ["issuer_id"]
+    ignore_changes = [issuer_id]
   }
 }
 
