@@ -11,7 +11,7 @@ resource "vault_consul_secret_backend_role" "admin" {
   backend = vault_consul_secret_backend.core_consul.path
 
   consul_policies = [
-    "admin",
+    "global-management",
   ]
 }
 
