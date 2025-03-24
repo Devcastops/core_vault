@@ -19,6 +19,9 @@ resource "vault_pki_secret_backend_root_cert" "consul" {
   ou                   = "DevCastOps"
   organization         = "DevCastOps"
   issuer_name          = "consul"
+  lifecycle {
+    ignore_changes = ["issuer_id"]
+  }
 }
 
 resource "vault_pki_secret_backend_role" "role" {
