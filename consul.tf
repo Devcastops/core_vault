@@ -15,6 +15,14 @@ resource "vault_consul_secret_backend_role" "terraform" {
   ]
 }
 
+resource "vault_consul_secret_backend_role" "admin" {
+  name    = "admin"
+  backend = vault_consul_secret_backend.core_consul.path
+
+  consul_roles = [
+    "admin",
+  ]
+}
 
 
 # resource "vault_identity_oidc_assignment" "consul_auto_config" {
