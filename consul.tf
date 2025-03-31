@@ -6,8 +6,8 @@ resource "vault_consul_secret_backend" "core_consul" {
   bootstrap   = true
 }
 
-resource "vault_consul_secret_backend_role" "admin" {
-  name    = "admin"
+resource "vault_consul_secret_backend_role" "terraform" {
+  name    = "terraform"
   backend = vault_consul_secret_backend.core_consul.path
 
   consul_policies = [
