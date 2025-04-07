@@ -46,3 +46,19 @@ path "${vault_mount.pki.path}/sign/${vault_pki_secret_backend_role.role.name}" {
 }
 EOT
 }
+
+resource "vault_policy" "vault_server" {
+  name = "core/vault/server"
+
+  policy = <<EOT
+path "${vault_mount.pki.path}/root/rotate/internal" {
+  capabilities = ["create", "update"]
+  allowed_parameters = {
+    "issuer_name" = ["${vault_pki_secret_backend_root_cert.consul.issuer_name}"]
+  }
+}
+path "${vault_mount.pki.path}/issuer/${vault_pki_secret_backend_root_cert.consul.issuer_name}" {
+  capabilities = ["delete"]
+}
+EOT
+}
