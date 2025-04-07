@@ -53,8 +53,9 @@ resource "vault_policy" "vault_server" {
   policy = <<EOT
 path "${vault_mount.pki.path}/root/rotate/internal" {
   capabilities = ["create", "update"]
-  required_parameters = {
+  allowed_parameters = {
     "issuer_name" = ["${vault_pki_secret_backend_root_cert.consul.issuer_name}"]
+    "*" = []
   }
 }
 path "${vault_mount.pki.path}/issuer/${vault_pki_secret_backend_root_cert.consul.issuer_name}" {
