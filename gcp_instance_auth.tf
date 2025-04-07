@@ -21,6 +21,6 @@ resource "vault_gcp_auth_backend_role" "vault_server" {
   bound_projects    = ["devcastops"]
   token_ttl         = 300
   token_max_ttl     = 600
-  token_policies    = [vault_policy.vault_server.name]
+  token_policies    = [vault_policy.ca_rotate.name]
   add_group_aliases = true
 }

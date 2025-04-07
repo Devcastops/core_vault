@@ -47,8 +47,8 @@ path "${vault_mount.pki.path}/sign/${vault_pki_secret_backend_role.role.name}" {
 EOT
 }
 
-resource "vault_policy" "vault_server" {
-  name = "core/vault/server"
+resource "vault_policy" "ca_rotate" {
+  name = "core/vault/ca_rotate"
 
   policy = <<EOT
 path "${vault_mount.pki.path}/root/rotate/internal" {
