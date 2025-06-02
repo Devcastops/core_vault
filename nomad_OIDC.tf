@@ -15,7 +15,9 @@ resource "vault_identity_oidc_client" "nomad" {
   name = "core_nomad"
   redirect_uris = [
     "https://nomad.devcastops.com:4649/oidc/callback",
-    "https://nomad.devcastops.com:4646/ui/settings/tokens"
+    "https://nomad.devcastops.com:4646/ui/settings/tokens",
+    "https://nomad.devcastops.com/oidc/callback",
+    "https://nomad.devcastops.com/ui/settings/tokens"
   ]
   assignments = [
     vault_identity_oidc_assignment.nomad.name
