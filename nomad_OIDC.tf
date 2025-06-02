@@ -28,6 +28,7 @@ resource "vault_identity_oidc_client" "nomad" {
 
 resource "vault_identity_oidc_provider" "nomad" {
   name          = "core_nomad"
+  issuer_host = var.vault_addr
   https_enabled = true
   allowed_client_ids = [
     vault_identity_oidc_client.nomad.client_id
