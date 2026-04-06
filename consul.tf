@@ -28,7 +28,7 @@ resource "vault_consul_secret_backend_role" "client" {
   name    = "client"
   backend = vault_consul_secret_backend.core_consul.path
 
-  consul_roles = [
+  consul_policies = [
     "global-management",
   ]
 }
