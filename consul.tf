@@ -29,7 +29,7 @@ resource "vault_consul_secret_backend_role" "client" {
   backend = vault_consul_secret_backend.core_consul.path
 
   consul_roles = [
-    "admin",
+    "global-management",
   ]
 }
 
