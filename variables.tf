@@ -24,8 +24,3 @@ variable "consul_url" {
   type        = string
   description = "url of consul https://url:8501"
 }
-
-variable "consul_token" {
-  type        = string
-  description = "the token to use to acl auth with consul"
-}
