@@ -68,7 +68,7 @@ resource "vault_policy" "consul_client_token" {
   name = "core/vault/consul_client_token"
 
   policy = <<EOT
-path "${vault_consul_secret_backend.core_consul.path}/creds/${vault_consul_secret_backend_role.client.name}"{
+path "${var.consul_backend_path}/creds/client" {
   capabilities = ["read"]
 }
 EOT

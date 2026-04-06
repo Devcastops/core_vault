@@ -1,5 +1,5 @@
 resource "vault_consul_secret_backend" "core_consul" {
-  path        = "core/consul"
+  path        = var.consul_backend_path
   description = "Manages the Consul backend"
   address     = split("://", var.consul_url)[1]
   scheme      = split("://", var.consul_url)[0]

@@ -24,3 +24,9 @@ variable "consul_url" {
   type        = string
   description = "url of consul https://url:8501"
 }
+
+variable "consul_backend_path" {
+  type        = string
+  description = "The path for the consul backend"
+  default     = "core/consul"
+}
