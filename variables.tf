@@ -15,7 +15,7 @@ variable "core_gcp_client_secret" {
   description = "The client secret for gpc auth"
 }
 
-variable "nomad_url" {
+variable "nomad_addr" {
   type        = string
   description = "url of nomad https://url:4646"
 }

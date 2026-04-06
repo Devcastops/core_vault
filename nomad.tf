@@ -3,7 +3,7 @@ resource "vault_jwt_auth_backend" "nomad_WI" {
   path               = "core/nomad"
   default_role       = "nomad_wi"
   type               = "jwt"
-  jwks_url           = "${var.nomad_url}/.well-known/jwks.json"
+  jwks_url           = "${var.nomad_addr}/.well-known/jwks.json"
   jwt_supported_algs = ["RS256", "EdDSA"]
 
 }
