@@ -73,3 +73,14 @@ path "${var.consul_backend_path}/creds/client" {
 }
 EOT
 }
+
+resource "vault_policy" "nomad_server" {
+  name = "core/vault/nomad_server"
+
+  policy = <<EOT
+path "core/nomad/" {
+  capabilities = ["read", "create", "update", "list"]
+}
+EOT
+}
+

@@ -1,3 +1,11 @@
+resource "vault_mount" "nomad_bootstrap" {
+  path = "core/nomad"
+  type = "kv"
+  options = {
+    version = "2"
+  }
+}
+
 resource "vault_jwt_auth_backend" "nomad_WI" {
   description        = "Auth from Nomad"
   path               = "core/nomad"
