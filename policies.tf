@@ -32,7 +32,8 @@ ${[for i in range(6) : <<EOB
 path "${join("",[for i in range(i):"+/" ])}{{ identity.entity.aliases..metadata.nomad_job_id }}/*" {
   capabilities = ["create", "read", "update", "delete", "list"]
 }
-EOB]}
+EOB
+]}
 EOT
 }
 
