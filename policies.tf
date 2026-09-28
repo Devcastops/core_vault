@@ -28,6 +28,11 @@ path "{{ identity.entity.aliases.${vault_jwt_auth_backend.nomad_WI.accessor}.met
 path "{{ identity.entity.aliases.${vault_jwt_auth_backend.nomad_WI.accessor}.metadata.nomad_namespace }}/{{ identity.entity.aliases.${vault_jwt_auth_backend.nomad_WI.accessor}.metadata.nomad_job_id }}/*" {
   capabilities = ["create", "read", "update", "delete", "list"]
 }
+${[for i in range(6) : <<EOB
+path ${join("",[for i in range(i):"+/" ])}{{ identity.entity.aliases..metadata.nomad_job_id }}/*" ]}
+  capabilities = ["create", "read", "update", "delete", "list"]
+}
+EOB
 EOT
 }
 
