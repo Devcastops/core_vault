@@ -21,19 +21,17 @@ EOT
 resource "vault_policy" "core_nomad_wi" {
   name = "core/nomad/wi"
 
+  # Depth 0 grants the job's own secrets engine; each extra depth prefixes a "+" segment
+  # so jobs can reach their path inside shared engines, e.g. +/+/<job_id>/*
   policy = <<EOT
-path "{{ identity.entity.aliases.${vault_jwt_auth_backend.nomad_WI.accessor}.metadata.nomad_job_id }}/*" {
+%{for depth in range(0, var.nomad_wi_shared_engine_depth + 1)~}
+path "${join("", [for i in range(depth) : "+/"])}{{ identity.entity.aliases.${vault_jwt_auth_backend.nomad_WI.accessor}.metadata.nomad_job_id }}/*" {
   capabilities = ["create", "read", "update", "delete", "list"]
 }
-path "{{ identity.entity.aliases.${vault_jwt_auth_backend.nomad_WI.accessor}.metadata.nomad_namespace }}/{{ identity.entity.aliases.${vault_jwt_auth_backend.nomad_WI.accessor}.metadata.nomad_job_id }}/*" {
+path "${join("", [for i in range(depth) : "+/"])}{{ identity.entity.aliases.${vault_jwt_auth_backend.nomad_WI.accessor}.metadata.nomad_namespace }}/{{ identity.entity.aliases.${vault_jwt_auth_backend.nomad_WI.accessor}.metadata.nomad_job_id }}/*" {
   capabilities = ["create", "read", "update", "delete", "list"]
 }
-${[for i in range(6) : <<EOB
-path "${join("",[for i in range(i):"+/" ])}{{ identity.entity.aliases..metadata.nomad_job_id }}/*" {
-  capabilities = ["create", "read", "update", "delete", "list"]
-}
-EOB
-]}
+%{endfor~}
 EOT
 }
 

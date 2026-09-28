@@ -30,3 +30,9 @@ variable "consul_backend_path" {
   description = "The path for the consul backend"
   default     = "core/consul"
 }
+
+variable "nomad_wi_shared_engine_depth" {
+  type        = number
+  description = "Maximum number of \"+\" path segments allowed before the Nomad job identity in the core/nomad/wi policy, for secrets held in shared secrets engines"
+  default     = 6
+}
