@@ -25,6 +25,14 @@ resource "vault_policy" "core_nomad_wi" {
   # so jobs can reach their path inside shared engines, e.g. +/+/<job_id>/*
   policy = <<EOT
 %{for depth in range(0, var.nomad_wi_shared_engine_depth + 1)~}
+
+path "${join("", [for i in range(depth) : "+/"])}{{ identity.entity.aliases.${vault_jwt_auth_backend.nomad_WI.accessor}.metadata.nomad_job_id }}" {
+  capabilities = ["create", "read", "update", "delete", "list"]
+}
+path "${join("", [for i in range(depth) : "+/"])}{{ identity.entity.aliases.${vault_jwt_auth_backend.nomad_WI.accessor}.metadata.nomad_namespace }}/{{ identity.entity.aliases.${vault_jwt_auth_backend.nomad_WI.accessor}.metadata.nomad_job_id }}" {
+  capabilities = ["create", "read", "update", "delete", "list"]
+}
+
 path "${join("", [for i in range(depth) : "+/"])}{{ identity.entity.aliases.${vault_jwt_auth_backend.nomad_WI.accessor}.metadata.nomad_job_id }}/*" {
   capabilities = ["create", "read", "update", "delete", "list"]
 }
