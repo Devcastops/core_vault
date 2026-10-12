@@ -24,6 +24,15 @@ resource "vault_consul_secret_backend_role" "admin" {
   ]
 }
 
+resource "vault_consul_secret_backend_role" "traefik" {
+  name    = "traefik"
+  backend = vault_consul_secret_backend.core_consul.path
+
+  consul_roles = [
+    "admin",
+  ]
+}
+
 resource "vault_consul_secret_backend_role" "client" {
   name    = "client"
   backend = vault_consul_secret_backend.core_consul.path
