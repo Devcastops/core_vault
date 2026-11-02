@@ -16,6 +16,9 @@ resource "vault_approle_auth_backend_role" "agent" {
   token_ttl      = 60 * 60
   token_max_ttl  = 4 * 60 * 60
   secret_id_ttl  = 32 * 24 * 60 * 60
+  alias_metadata = {
+    owner = each.value.owner
+  }
 
   lifecycle {
     precondition {
@@ -23,21 +26,4 @@ resource "vault_approle_auth_backend_role" "agent" {
       error_message = "Agent ${each.key} has owner ${each.value.owner}, who is not in local.members."
     }
   }
-}
-
-# Agents get their own entities rather than the owner's, which would inherit core/admin.
-# AppRole aliases are keyed on the role ID, so logins land on this entity.
-resource "vault_identity_entity" "agent" {
-  for_each = local.agents
-  name     = "agent/${each.key}"
-  metadata = {
-    owner = each.value.owner
-  }
-}
-
-resource "vault_identity_entity_alias" "agent" {
-  for_each       = vault_approle_auth_backend_role.agent
-  name           = each.value.role_id
-  mount_accessor = vault_auth_backend.approle.accessor
-  canonical_id   = vault_identity_entity.agent[each.key].id
 }
