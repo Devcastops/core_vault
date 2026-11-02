@@ -63,3 +63,10 @@ resource "vault_nomad_secret_role" "admin" {
   type     = "client"
   policies = ["admin"]
 }
+
+resource "vault_nomad_secret_role" "core_read" {
+  backend  = vault_nomad_secret_backend.core_nomad.backend
+  role     = "core_read"
+  type     = "client"
+  policies = ["read_only"]
+}
