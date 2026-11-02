@@ -50,9 +50,9 @@ variable "agents" {
   }))
   description = "Agents that can log in with AppRole as agent-<name>. owner must be an email in local.members"
   default = [
-    { name = "james-sandford", owner = "james.sandford@blinkbyte.co.uk" },
-    { name = "wale-salami", owner = "wale.salami@devcastops.com" },
-    { name = "barnaby", owner = "barnaby@devcastops.com" },
+    { name = "open-sandford", owner = "james.sandford@blinkbyte.co.uk" },
+    { name = "wale-sal-ai", owner = "wale.salami@devcastops.com" },
+    { name = "barn-code", owner = "barnaby@devcastops.com" },
   ]
 
   validation {
