@@ -36,3 +36,9 @@ variable "nomad_wi_shared_engine_depth" {
   description = "Maximum number of \"+\" path segments allowed before the Nomad job identity in the core/nomad/wi policy, for secrets held in shared secrets engines"
   default     = 6
 }
+
+variable "nomad_backend_path" {
+  type        = string
+  description = "The path for the nomad secrets backend"
+  default     = "core/nomad_acl"
+}
