@@ -96,3 +96,23 @@ path "core/nomad/" {
 EOT
 }
 
+
+resource "vault_policy" "nomad_core_read" {
+  name = "core/nomad/core_read"
+
+  policy = <<EOT
+path "${var.nomad_backend_path}/creds/${vault_nomad_secret_role.core_read.role}" {
+  capabilities = ["read"]
+}
+EOT
+}
+
+resource "vault_policy" "consul_core_read" {
+  name = "core/consul/core_read"
+
+  policy = <<EOT
+path "${var.consul_backend_path}/creds/${vault_consul_secret_backend_role.core_read.name}" {
+  capabilities = ["read"]
+}
+EOT
+}

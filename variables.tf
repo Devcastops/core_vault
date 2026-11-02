@@ -42,3 +42,26 @@ variable "nomad_backend_path" {
   description = "The path for the nomad secrets backend"
   default     = "core/nomad_acl"
 }
+
+variable "agents" {
+  type = list(object({
+    name  = string
+    owner = string
+  }))
+  description = "Agents that can log in with AppRole as agent-<name>. owner must be an email in local.members"
+  default = [
+    { name = "open-sandford", owner = "james.sandford@blinkbyte.co.uk" },
+    { name = "wale-sal-ai", owner = "wale.salami@devcastops.com" },
+    { name = "barn-code", owner = "barnaby@devcastops.com" },
+  ]
+
+  validation {
+    condition     = alltrue([for a in var.agents : can(regex("^[A-Za-z0-9_.-]+$", a.name))])
+    error_message = "Agent names may only contain letters, numbers, \"_\", \".\" and \"-\"."
+  }
+
+  validation {
+    condition     = length(distinct([for a in var.agents : a.name])) == length(var.agents)
+    error_message = "Agent names must be unique."
+  }
+}
