@@ -42,6 +42,15 @@ resource "vault_consul_secret_backend_role" "client" {
   ]
 }
 
+resource "vault_consul_secret_backend_role" "core_read" {
+  name    = "core_read"
+  backend = vault_consul_secret_backend.core_consul.path
+
+  consul_policies = [
+    "core-read",
+  ]
+}
+
 # resource "vault_identity_oidc_assignment" "consul_auto_config" {
 #   name       = "core_consul_auto_config"
 #   group_ids  = [
