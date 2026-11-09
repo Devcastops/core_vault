@@ -33,7 +33,7 @@ resource "vault_identity_mfa_duo" "this" {
   api_hostname    = "api-63ccd50a.duosecurity.com"
   secret_key      = var.duo_secret_key
   integration_key = var.duo_integration_key
-  username_format = "{{identity.entity.metadata.duo_user}}"
+  username_format = "{{identity.entity.aliases.${vault_auth_backend.approle.accessor}.custom_metadata.owner}}"
 }
 
 resource "vault_identity_mfa_login_enforcement" "approle" {
