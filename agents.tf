@@ -29,7 +29,7 @@ resource "vault_approle_auth_backend_role" "agent" {
 }
 
 resource "vault_identity_mfa_duo" "this" {
-  api_hostname    = "api-xxxxxxxx.duosecurity.com"
+  api_hostname    = "api-63ccd50a.duosecurity.com"
   secret_key      = var.duo_secret_key
   integration_key = var.duo_integration_key
 }
