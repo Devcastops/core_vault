@@ -35,7 +35,7 @@ resource "vault_identity_mfa_duo" "this" {
 }
 
 resource "vault_identity_mfa_login_enforcement" "approle" {
-  name = vault_auth_backend.approle.path
+  name = "approle"
   mfa_method_ids = [
     vault_identity_mfa_duo.this.method_id,
   ]
