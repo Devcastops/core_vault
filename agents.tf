@@ -18,6 +18,7 @@ resource "vault_approle_auth_backend_role" "agent" {
   secret_id_ttl  = 32 * 24 * 60 * 60
   alias_metadata = {
     owner = each.value.owner
+    foo = "bar"
   }
 
   lifecycle {
@@ -32,6 +33,7 @@ resource "vault_identity_mfa_duo" "this" {
   api_hostname    = "api-63ccd50a.duosecurity.com"
   secret_key      = var.duo_secret_key
   integration_key = var.duo_integration_key
+  username_format = "{{identity.entity.metadata.duo_user}}"
 }
 
 resource "vault_identity_mfa_login_enforcement" "approle" {
