@@ -2,6 +2,24 @@ locals {
   agents = { for a in var.agents : a.name => a }
 }
 
+resource "vault_identity_entity" "bot" {
+  for_each  = local.agents
+  name      = each.key
+  policies  = []
+  metadata  = {
+    owner = each.value.owner
+  }
+}
+
+resource "vault_identity_entity_alias" "bot" {
+  for_each        = local.agents
+  name            = each.key
+  mount_accessor  = vault_auth_backend.approle.accessor
+  canonical_id    = vault_identity_entity.bot[each.key].id
+}
+
+
+
 resource "vault_auth_backend" "approle" {
   path        = "core/approle"
   type        = "approle"
@@ -16,11 +34,7 @@ resource "vault_approle_auth_backend_role" "agent" {
   token_ttl      = 60 * 60
   token_max_ttl  = 4 * 60 * 60
   secret_id_ttl  = 32 * 24 * 60 * 60
-  alias_metadata = {
-    owner = each.value.owner
-    foo = "bar"
-  }
-
+  role_id        = each.key
   lifecycle {
     precondition {
       condition     = contains(keys(local.members), each.value.owner)
