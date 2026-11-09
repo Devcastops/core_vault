@@ -65,3 +65,15 @@ variable "agents" {
     error_message = "Agent names must be unique."
   }
 }
+
+variable "duo_secret_key" {
+  sensitive   = true
+  type        = string
+  description = "The secret key for Duo MFA"
+}
+
+variable "duo_integration_key" {
+  sensitive   = true
+  type        = string
+  description = "The integration key for Duo MFA"
+}
