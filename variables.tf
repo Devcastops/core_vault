@@ -51,7 +51,7 @@ variable "agents" {
   description = "Agents that can log in with AppRole as agent-<name>. owner must be an email in local.members"
   default = [
     { name = "open-sandford", owner = "james.sandford@blinkbyte.co.uk" },
-    { name = "wale-sal-ai", owner = "wale.salami@devcastops.com" },
+    { name = "wale-sal-ai", owner = "wale@devcastops.com" },
     { name = "barn-code", owner = "barnaby@devcastops.com" },
   ]
 
