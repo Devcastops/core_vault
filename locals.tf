@@ -3,7 +3,7 @@ locals {
     "james.sandford@blinkbyte.co.uk" = {
       groups = ["core/admin"]
     },
-    "wale.salami@devcastops.com" = {
+    "wale@devcastops.com" = {
       groups = ["core/admin"]
     },
     "barnaby@devcastops.com" = {
