@@ -31,7 +31,7 @@ resource "vault_pki_secret_backend_role" "role" {
   allow_ip_sans    = true
   key_type         = "rsa"
   key_bits         = 4096
-  allowed_domains  = ["dc1.consul"]
+  allowed_domains  = ["dc1.consul","consul.service.consul"]
   allow_subdomains = true
   generate_lease   = true
 }
