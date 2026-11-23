@@ -6,6 +6,9 @@ locals {
     "wale@devcastops.com" = {
       groups = ["core/admin"]
     },
+    "wale.salami@devcastops.com" = {
+      groups = ["core/admin"]
+    },
     "barnaby@devcastops.com" = {
       groups = ["core/admin"]
     }
